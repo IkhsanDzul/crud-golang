@@ -1,2 +1,2 @@
-# chat-app
-Simple Chat App with Golang
+# CRUD GOLANG
+Simple Crud system with Golang
