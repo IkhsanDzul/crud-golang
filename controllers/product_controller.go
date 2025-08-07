@@ -1,8 +1,20 @@
 package controllers
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/IkhsanDzul/crud-golang/config"
+	"github.com/IkhsanDzul/crud-golang/models"
+	"github.com/gin-gonic/gin"
+)
 
 func CreateProduct(c *gin.Context) {
-	// Logic to create a product
-	c.JSON(201, gin.H{"message": "Product created"})
+	var product models.Product
+	if err := c.ShouldBindJSON(&product); err != nil {
+		c.JSON(400, gin.H{"error": err.Error()})
+		return
+	}
+	if err := config.DB.Create(&product).Error; err != nil {
+		c.JSON(500, gin.H{"error": "Failed to create product"})
+		return
+	}
+	c.JSON(201, product)
 }
