@@ -25,11 +25,11 @@ func main() {
 
 		master := api.Group("/master")
 		{
-			// master.GET("/products", controllers.GetProducts)
-			// master.GET("/products/:id", controllers.GetProduct)
+			master.GET("/products", controllers.GetProducts)
+			master.GET("/products/:name", controllers.GetProductByName)
 			master.POST("/products", controllers.CreateProduct)
-			// master.PUT("/products/:id", controllers.UpdateProduct)
-			// master.DELETE("/products/:id", controllers.DeleteProduct)
+			master.PUT("/products/:id", controllers.UpdateProduct)
+			master.DELETE("/products/:id", controllers.DeleteProduct)
 		}
 	}
 
