@@ -17,13 +17,13 @@ func main() {
 	api := r.Group("/api")
 	{
 		auth := api.Group("/auth")
-		auth.Use(middleware.AuthRequired())
 		{
 			auth.POST("/login", controllers.Login)
 			auth.POST("/register", controllers.Register)
 		}
-
+		
 		master := api.Group("/master")
+		master.Use(middleware.AuthRequired())
 		{
 			master.GET("/products", controllers.GetProducts)
 			master.GET("/products/:name", controllers.GetProductByName)
